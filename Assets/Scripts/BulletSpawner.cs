@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
@@ -16,3 +17,4 @@ public class BulletSpawner : MonoBehaviour
         
     }
 }
+
