@@ -8,6 +8,7 @@ public class BulletSpawner : NetworkBehaviour
 
     [SerializeField] private GameObject bulled;
     [SerializeField] private Transform InistialTransform;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class BulletSpawner : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             SpawnBulletServerRPC(InistialTransform.position, InistialTransform.rotation);
