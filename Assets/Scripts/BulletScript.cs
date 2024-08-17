@@ -10,6 +10,6 @@ public class BulletScript : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-        GetComponent<Rigidbody2D>().velocity = this.transform.forward * speed;
+        GetComponent<Rigidbody2D>().velocity = this.transform.up * speed;
     }
 }
