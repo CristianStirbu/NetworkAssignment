@@ -27,6 +27,7 @@ public class EnemyScrpit : NetworkBehaviour
         {
             distance = Vector3.Distance(transform.position, player.transform.position);
             Vector3 direction = player.transform.position - transform.position;
+            direction.z = 0;
             transform.up = direction;
         }
     
