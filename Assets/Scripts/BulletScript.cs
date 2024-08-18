@@ -12,4 +12,9 @@ public class BulletScript : NetworkBehaviour
         base.OnNetworkSpawn();
         GetComponent<Rigidbody2D>().velocity = this.transform.up * speed;
     }
+
+    public void Update()
+    {
+        
+    }
 }
