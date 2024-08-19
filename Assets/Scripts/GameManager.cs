@@ -26,7 +26,7 @@ public class GameManager : NetworkBehaviour
     void Update()
     {
 
-        if (NetworkManager.Singleton.IsHost)
+        if (NetworkManager.Singleton.IsHost && NetworkManager.Singleton.IsClient)
         {
             timeUnitlSpwan -= Time.deltaTime;
             if (timeUnitlSpwan <= 0)

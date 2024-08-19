@@ -23,7 +23,7 @@ public class SpwanEnemy : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (NetworkManager.Singleton.IsHost && NetworkManager.Singleton.IsClient)
+        if(NetworkManager.Singleton.IsHost && NetworkManager.Singleton.IsClient)
         {
             timeUnitlSpwan -= Time.deltaTime;
             if (timeUnitlSpwan <= 0)

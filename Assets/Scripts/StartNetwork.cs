@@ -11,5 +11,6 @@ public class StartNetwork : MonoBehaviour
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
+
     }
 }
