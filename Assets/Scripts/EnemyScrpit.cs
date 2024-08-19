@@ -16,13 +16,15 @@ public class EnemyScrpit : NetworkBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
          
         if(player.transform.position != transform.position)
         {
-            distance = Vector3.Distance(transform.position, player.transform.position);
+            distance = Vector3.Distance(transform.position,player.transform.position);
             Vector3 direction = player.transform.position - transform.position;
             direction.z = 0;
             transform.up = direction;
