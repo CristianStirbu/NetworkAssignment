@@ -337,7 +337,7 @@ MonoBehaviour:
   enemy: {fileID: 4844994270100861046, guid: bfb068c3a6d9354498468a6d7c3437b6, type: 3}
   miniumSpwanTime: 2
   maxiumSpwanTime: 4
-  timeUnitlSpwan: 0
+  timeUnitlSpwan: 5
 --- !u!4 &764238245
 Transform:
   m_ObjectHideFlags: 0

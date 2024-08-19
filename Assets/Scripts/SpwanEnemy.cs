@@ -32,7 +32,8 @@ public class SpwanEnemy : NetworkBehaviour
             timeUnitlSpwan -= Time.deltaTime;
             if (timeUnitlSpwan <= 0)
             {
-                Instantiate(enemy, transform.position, Quaternion.identity);
+                GameObject spawnedEnemy = Instantiate(enemy, transform.position, Quaternion.identity);
+                spawnedEnemy.GetComponent<NetworkObject>().Spawn();
                 SetTimeUntilSpawn();
             }
         }
