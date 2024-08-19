@@ -18,11 +18,7 @@ public class SpwanEnemy : NetworkBehaviour
     {
        
     }
-    public override void OnNetworkSpawn()
-    {
-        base.OnNetworkSpawn();
-        SetTimeUntilSpawn();
-    }
+   
 
     // Update is called once per frame
     void Update()
