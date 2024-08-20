@@ -36,4 +36,15 @@ public class PlayerController : NetworkBehaviour
             //targetDirection.Z = 0f;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!IsOwner) return;
+
+        if (collision.gameObject.GetComponent<EnemyScrpit>())
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

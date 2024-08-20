@@ -14,9 +14,7 @@ public class EnemyScrpit : NetworkBehaviour
     void Start()
     {
         GameObject[] playerArray;
-
         playerArray = GameObject.FindGameObjectsWithTag("Player");
-
         player = playerArray[Random.Range(0, playerArray.Length)];
     }
 
@@ -26,14 +24,18 @@ public class EnemyScrpit : NetworkBehaviour
     void Update()
     {
 
-        if (player.transform.position != transform.position)
+        if (player != null)
         {
-            distance = Vector3.Distance(transform.position, player.transform.position);
-            Vector3 direction = player.transform.position - transform.position;
-            direction.z = 0;
-            transform.up = direction;
+            if (player.transform.position != transform.position)
+            {
+                distance = Vector3.Distance(transform.position, player.transform.position);
+                Vector3 direction = player.transform.position - transform.position;
+                direction.z = 0;
+                transform.up = direction;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+       
     }
 }

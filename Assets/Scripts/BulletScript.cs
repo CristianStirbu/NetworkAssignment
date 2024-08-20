@@ -17,4 +17,16 @@ public class BulletScript : NetworkBehaviour
     {
         
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!IsOwner) return;
+
+        if (collision.gameObject.GetComponent<EnemyScrpit>())
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
 }

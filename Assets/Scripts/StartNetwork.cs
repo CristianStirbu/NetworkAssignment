@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class StartNetwork : MonoBehaviour
+public class StartNetwork : NetworkBehaviour
 {
     public void StartClient()
     {
