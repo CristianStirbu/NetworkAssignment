@@ -28,6 +28,12 @@ public class BulletScript : NetworkBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+
+        if(collision.gameObject.GetComponent<Walls>())
+        {
+            Destroy(gameObject);
+        }
     }
+    
 
 }
