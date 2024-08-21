@@ -6,6 +6,7 @@ using UnityEngine;
 public class BulletScript : NetworkBehaviour 
 {
     [SerializeField] private float speed = 10f;
+  
 
     public override void OnNetworkSpawn()
     {
@@ -15,7 +16,7 @@ public class BulletScript : NetworkBehaviour
 
     public void Update()
     {
-        
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
