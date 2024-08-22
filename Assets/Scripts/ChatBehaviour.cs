@@ -1,13 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
-using Unity.Collections;
 using Mirror;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Networking.PlayerConnection;
 
 public class ChatBehaviour : NetworkBehaviour
 {
@@ -18,23 +12,35 @@ public class ChatBehaviour : NetworkBehaviour
     private static event Action<string> OnMessage;
     // Start is called before the first frame update
 
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
     public override void OnStartAuthority()
     {
-       
-        chatUI.SetActive(true);
-        OnMessage += HandleNewMessage;
         base.OnStartAuthority();
+        OnMessage += HandleNewMessage;
+        chatUI.SetActive(true);
+        Debug.Log("loof");
+
     }
 
     [ClientCallback]
     private void OnDestroy()
     {
-        if(!authority) {return;}
         OnMessage -= HandleNewMessage;
     }
 
     private void HandleNewMessage(string message)
     {
+
         chatText.text += message;
     }
 
@@ -42,12 +48,21 @@ public class ChatBehaviour : NetworkBehaviour
     [Client]
     public void Send(string message)
     {
-        if(Input.GetKeyDown(KeyCode.Return)) {return;}
-        if(string.IsNullOrWhiteSpace(message)) {return;}
+        Debug.Log("Send");
+        if (!Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("im preesing");
+            return;
+        }
 
-        cmdSendMessage(inputField.text);
+        if (string.IsNullOrWhiteSpace(message)) Debug.Log("There is no message");
 
+        if (string.IsNullOrWhiteSpace(message)) { return; }
+
+        cmdSendMessage(message);
         inputField.text = string.Empty;
+
+
     }
 
     [Command]
@@ -61,19 +76,8 @@ public class ChatBehaviour : NetworkBehaviour
     private void RpcHandleMessage(string message)
     {
         OnMessage?.Invoke($"\n{message}");
+        Debug.Log("written");
     }
 
-    
 
-    
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

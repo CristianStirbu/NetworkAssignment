@@ -39,7 +39,7 @@ public class PlayerController : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!IsOwner) return;
+        if (!IsHost) return;
 
         if (collision.gameObject.GetComponent<EnemyScrpit>())
         {
