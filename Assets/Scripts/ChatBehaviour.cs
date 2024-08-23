@@ -1,20 +1,18 @@
 using System;
 using TMPro;
-using Mirror;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ChatBehaviour : NetworkBehaviour
 {
-    [SerializeField] private GameObject chatUI = null;
-    [SerializeField] private TMP_Text chatText = null;
-    [SerializeField] private TMP_InputField inputField = null;
+    [SerializeField] private GameObject chatUI;
+    [SerializeField] private TMP_Text chatText ;
+    [SerializeField] private TMP_InputField inputField;
 
-    private static event Action<string> OnMessage;
-    // Start is called before the first frame update
-
+    
     void Start()
     {
-
+        chatText.SetText("");
     }
 
     // Update is called once per frame
@@ -23,61 +21,32 @@ public class ChatBehaviour : NetworkBehaviour
 
     }
 
-    public override void OnStartAuthority()
-    {
-        base.OnStartAuthority();
-        OnMessage += HandleNewMessage;
-        chatUI.SetActive(true);
-        Debug.Log("loof");
-
+    public void SendMessage()
+    { 
+         AddTextServerRPC(inputField.text);
     }
 
-    [ClientCallback]
-    private void OnDestroy()
+   [ServerRpc(RequireOwnership = false)]
+    void AddTextServerRPC(string text)
     {
-        OnMessage -= HandleNewMessage;
-    }
-
-    private void HandleNewMessage(string message)
-    {
-
-        chatText.text += message;
-    }
-
-
-    [Client]
-    public void Send(string message)
-    {
-        Debug.Log("Send");
-        if (!Input.GetKeyDown(KeyCode.Return))
-        {
-            Debug.Log("im preesing");
-            return;
-        }
-
-        if (string.IsNullOrWhiteSpace(message)) Debug.Log("There is no message");
-
-        if (string.IsNullOrWhiteSpace(message)) { return; }
-
-        cmdSendMessage(message);
-        inputField.text = string.Empty;
-
-
-    }
-
-    [Command]
-    private void cmdSendMessage(string message)
-    {
-        //validate the massage
-        RpcHandleMessage($"[{connectionToClient.connectionId}]: {message}");
+        AddTextClientRPC(text);
     }
 
     [ClientRpc]
-    private void RpcHandleMessage(string message)
+    void AddTextClientRPC(string text)
     {
-        OnMessage?.Invoke($"\n{message}");
-        Debug.Log("written");
+        AddText(text);
     }
 
+    void AddText(string chat)
+    {
+        string lastText = chatText.text;
+        chatText.SetText(lastText + "\n" + chat);
+    }
 
+    public override void OnNetworkDespawn()
+    {
+        chatText.SetText("");
+        base.OnNetworkDespawn();
+    }
 }

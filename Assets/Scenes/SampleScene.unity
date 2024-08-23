@@ -1830,10 +1830,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6778587722133593560, guid: 575246687b0ebf041a5c0735782c0146, type: 3}
-      propertyPath: sceneId
-      value: 3453892915
-      objectReference: {fileID: 0}
     - target: {fileID: 7936787368632410911, guid: 575246687b0ebf041a5c0735782c0146, type: 3}
       propertyPath: m_Name
       value: Chat
@@ -1841,10 +1837,6 @@ PrefabInstance:
     - target: {fileID: 8010240593717518657, guid: 575246687b0ebf041a5c0735782c0146, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3654579185
-      objectReference: {fileID: 0}
-    - target: {fileID: 8010240593717518657, guid: 575246687b0ebf041a5c0735782c0146, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 2901317117
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
